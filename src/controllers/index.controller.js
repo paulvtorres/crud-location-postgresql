@@ -43,7 +43,7 @@ const getLocationByNumPhone = async(req,res) => {
 };
 
 const saveLocation = async (req,res)=>{
-    const phoneNum = req.body.phoneNum.substring(0, 9);
+    const phoneNum = req.body.phoneNum;
     const lat = req.body.lat;
     const lng = req.body.lng;
     const query = "INSERT INTO location (phoneNum,name,lastName,lat,lng,lastDate) VALUES ($1,'','',$2,$3,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')) ON CONFLICT (phoneNum) DO UPDATE SET lat = $2, lng = $3, lastDate = to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')"
