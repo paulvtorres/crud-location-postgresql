@@ -22,16 +22,17 @@ const getLocations = async (req,res)=>{
             data: response.rows,
             message: "successfull"
         }
+        console.log("OK ALL ");
         res.status(200).json(responseData);
     }
     catch(error){
-        console.log(error);
+        console.log("error ALL " + error);
         const responseData = {
             success: false,
             data: null,
             message: err.message
         }
-        res.send("Error: "+error);
+        res.send(responseData);
     }
 };
 
