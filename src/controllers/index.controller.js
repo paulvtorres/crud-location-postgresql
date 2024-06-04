@@ -10,7 +10,7 @@ const pool = new Pool({
     host: '148.113.173.103',
     database: 'location_test',
     password: 'pvta2000',
-    port: 5432,
+    port: 41447,
 })
 
 const getLocations = async (req,res)=>{
