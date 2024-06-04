@@ -47,7 +47,7 @@ const saveLocation = async (req,res)=>{
     const lat = req.body.lat;
     const lng = req.body.lng;
     const levelBattery = req.body.levelBattery;
-    const query = "INSERT INTO location (phoneNum,name,lastName,lat,lng,levelBattery,lastDate) VALUES ($1,'','',$2,$3,0,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')) ON CONFLICT (phoneNum) DO UPDATE SET lat = $2, lng = $3, levelBattery = $4, lastDate = to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')"
+    const query = "INSERT INTO location (phoneNum,name,lastName,lat,lng,levelBattery,lastDate) VALUES ($1,'','',$2,$3,0.0,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')) ON CONFLICT (phoneNum) DO UPDATE SET lat = $2, lng = $3, levelBattery = $4, lastDate = to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS')"
     const response = await pool.query(query,[phoneNum, lat,lng,levelBattery]);
     let now = new Date();
     console.log(phoneNum + " OK " + now) 
