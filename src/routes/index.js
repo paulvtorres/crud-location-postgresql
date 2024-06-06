@@ -1,7 +1,7 @@
 const { Router} =  require('express');
 const router = Router();
 
-const { getLocations, getLocationByNumPhone, saveLocation/*, deleteUser, updateUser*/ } = require('../controllers/index.controller');
+const { getLocations, getLocationByNumPhone, saveLocation, saveName/*, deleteUser, updateUser*/ } = require('../controllers/index.controller');
 
 router.get('/all',getLocations);
 router.get('/list/:numphone',getLocationByNumPhone);
