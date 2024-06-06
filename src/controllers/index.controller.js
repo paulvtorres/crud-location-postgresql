@@ -68,9 +68,10 @@ const saveName = async (req, res) => {
     const response = await pool.query(query, [phoneNum, name,lastName]);
     let now = new Date();
     console.log(phoneNum + " Name OK " + now)
+    const data = { name : name, lastName : lastName}
     const responseData = {
         success: true,
-        data: [],
+        data: data,
         message: "successfull"
     }
     res.json(responseData);
