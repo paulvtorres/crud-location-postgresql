@@ -5,7 +5,8 @@ const { getLocations, getLocationByNumPhone, saveLocation/*, deleteUser, updateU
 
 router.get('/all',getLocations);
 router.get('/list/:numphone',getLocationByNumPhone);
-router.post('/',saveLocation);
+router.post('/location',saveLocation);
+router.post('/name', saveName);
 /*router.delete('/users/:id',deleteUser);
 router.put('/users/:id',updateUser);*/
 
