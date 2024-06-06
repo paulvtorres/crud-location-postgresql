@@ -64,7 +64,7 @@ const saveName = async (req, res) => {
     const phoneNum = req.body.phoneNum;
     const name = req.body.name;
     const lastName = req.body.lastName;
-    const query = "INSERT INTO location (phoneNum,name,lastName) VALUES ($1,$2,$3) ON CONFLICT (phoneNum) DO UPDATE SET name = $1, lastName = $2"
+    const query = "INSERT INTO location (phoneNum,name,lastName) VALUES ($1,$2,$3) ON CONFLICT (phoneNum) DO UPDATE SET name = $2, lastName = $3"
     const response = await pool.query(query, [phoneNum, name,lastName]);
     let now = new Date();
     console.log(phoneNum + " Name OK " + now)
