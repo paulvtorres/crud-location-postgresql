@@ -36,10 +36,10 @@ const getLocations = async (req,res)=>{
     }
 };
 
-const getLocationByNumPhone = async(req,res) => {
-    const id = req.params.id;
+const getLocationByPhoneNum = async(req,res) => {
+    const phoneNum = req.params.phoneNum;
     try {
-    const response = await pool.query('SELECT * FROM location WHERE phoneNum = $1',[id]);
+        const response = await pool.query('SELECT * FROM location WHERE phoneNum = $1', [phoneNum]);
     const responseData = {
         success: true,
         data: response.rows,
@@ -111,7 +111,7 @@ const updateUser = async(req,res) => {
 */
 module.exports = {
     getLocations,
-    getLocationByNumPhone,
+    getLocationByPhoneNum,
     saveLocation,
     saveName,
   /*  deleteUser,
