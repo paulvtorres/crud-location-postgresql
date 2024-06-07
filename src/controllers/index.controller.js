@@ -38,8 +38,25 @@ const getLocations = async (req,res)=>{
 
 const getLocationByNumPhone = async(req,res) => {
     const id = req.params.id;
-    const response = await pool.query('SELECT * FROM location WHERE numPhone = $1',[id]);
-    res.json(response.rows);
+    try {
+    const response = await pool.query('SELECT * FROM location WHERE phoneNum = $1',[id]);
+    const responseData = {
+        success: true,
+        data: response.rows,
+        message: "successfull"
+    }
+    console.log("OK LIST ");
+    res.status(200).json(responseData);
+}
+    catch (error) {
+    console.log("error ALL " + error);
+    const responseData = {
+        success: false,
+        data: null,
+        message: err.message
+    }
+    res.send(responseData);
+}
 };
 
 const saveLocation = async (req,res)=>{
