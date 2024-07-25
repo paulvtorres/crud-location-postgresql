@@ -6,11 +6,12 @@ const { Pool } = require('pg');
 })*/
 
 const pool = new Pool({
-    user: 'postgres',
-    host: '148.113.173.103',
-    database: 'location_test',
-    password: 'pvta2000',
-    port: 41447,
+    user: 'avnadmin',
+    host: 'pg-31e180fe-paulv-128a.e.aivencloud.com',
+    database: 'defaultdb',
+    password: 'AVNS_kHP1btmPtk8Nz0EpkbG',
+    port: 24475,
+    ssl: true
 })
 
 const getLocations = async (req,res)=>{
@@ -26,7 +27,7 @@ const getLocations = async (req,res)=>{
         res.status(200).json(responseData);
     }
     catch(error){
-        console.log("error ALL " + error);
+        console.log("error GETLOC " + error);
         const responseData = {
             success: false,
             data: null,
@@ -49,7 +50,7 @@ const getLocationByPhoneNum = async(req,res) => {
     res.status(200).json(responseData);
 }
     catch (error) {
-    console.log("error ALL " + error);
+    console.log("error GETLOCBYNUM " + error);
     const responseData = {
         success: false,
         data: null,
