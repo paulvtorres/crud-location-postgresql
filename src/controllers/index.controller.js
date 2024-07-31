@@ -86,7 +86,7 @@ const saveHistory = async (req, res) => {
     const locality = req.body.locality;
     const address1 = req.body.address1;
     const address2 = req.body.address2;
-    const query = "INSERT INTO history (phoneNum,hisDate,locality,address1,address2) VALUES ($1,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS'),$2,$3,$4,$5,$6)"
+    const query = "INSERT INTO history (phoneNum,hisDate,lat,lng,locality,address1,address2) VALUES ($1,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS'),$2,$3,$4,$5,$6)"
     const response = await pool.query(query, [phoneNum,lat,lng,locality,address1,address2]);
     let now = new Date();
     console.log(phoneNum + " HIS OK " + now)
