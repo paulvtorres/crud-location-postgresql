@@ -79,6 +79,23 @@ const saveLocation = async (req,res)=>{
     res.json(responseData);
 };
 
+const saveHistory = async (req, res) => {
+    const phoneNum = req.body.phoneNum;
+    const locality = req.body.locality;
+    const address1 = req.body.address1;
+    const address2 = req.body.address2;
+    const query = "INSERT INTO location (phoneNum,hisDate,locality,address1,address2) VALUES ($1,to_char(NOW() - interval '5 hour', 'YYYY-MM-DD HH24:MI:SS'),$2,$3,$4)"
+    const response = await pool.query(query, [phoneNum, locality,address1,address2]);
+    let now = new Date();
+    console.log(phoneNum + " HIS OK " + now)
+    const responseData = {
+        success: true,
+        data: [],
+        message: "successfull"
+    }
+    res.json(responseData);
+};
+
 const saveName = async (req, res) => {
     const phoneNum = req.body.phoneNum;
     const name = req.body.name;
@@ -115,6 +132,7 @@ module.exports = {
     getLocations,
     getLocationByPhoneNum,
     saveLocation,
+    saveHistory,
     saveName,
   /*  deleteUser,
     updateUser*/
