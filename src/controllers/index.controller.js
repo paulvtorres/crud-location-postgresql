@@ -60,6 +60,29 @@ const getLocationByPhoneNum = async(req,res) => {
 }
 };
 
+const getHistory = async (req, res) => {
+    const phoneNum = req.params.phoneNum;
+    try {
+        const response = await pool.query('SELECT * FROM history WHERE phoneNum = $1 order by hisdate desc', [phoneNum]);
+        const responseData = {
+            success: true,
+            data: response.rows,
+            message: "successfull"
+        }
+        console.log("OK HIS ");
+        res.status(200).json(responseData);
+    }
+    catch (error) {
+        console.log("error GETHIST " + error);
+        const responseData = {
+            success: false,
+            data: null,
+            message: err.message
+        }
+        res.send(responseData);
+    }
+};
+
 const saveLocation = async (req,res)=>{
     const phoneNum = req.body.phoneNum;
     const lat = req.body.lat;
@@ -133,6 +156,7 @@ const updateUser = async(req,res) => {
 module.exports = {
     getLocations,
     getLocationByPhoneNum,
+    getHistory,
     saveLocation,
     saveHistory,
     saveName,
