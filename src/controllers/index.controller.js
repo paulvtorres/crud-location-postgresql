@@ -137,6 +137,45 @@ const saveName = async (req, res) => {
     }
     res.json(responseData);
 };
+
+const addPerson = async (req, res) => {
+    const phoneNum = req.body.phoneNum;
+    const name = req.body.name;
+    const lastName = req.body.lastName;
+    const query = "INSERT INTO person (name,lastName) VALUES ($1,$2)"
+    const response = await pool.query(query, [phoneNum, name, lastName]);
+    let now = new Date();
+    console.log(phoneNum + " Name OK " + now)
+    const data = { name: name, lastName: lastName }
+    const responseData = {
+        success: true,
+        data: data,
+        message: "successfull"
+    }
+    res.json(responseData);
+};
+
+const getPersons = async (req, res) => {
+    try {
+        const response = await pool.query('SELECT * FROM person');
+        const responseData = {
+            success: true,
+            data: response.rows,
+            message: "successfull"
+        }
+        console.log("OK ALL ");
+        res.status(200).json(responseData);
+    }
+    catch (error) {
+        console.log("error GETPER " + error);
+        const responseData = {
+            success: false,
+            data: null,
+            message: err.message
+        }
+        res.send(responseData);
+    }
+};
 /*
 const deleteUser = async(req,res) =>{
     const id = req.params.id;
@@ -160,6 +199,8 @@ module.exports = {
     saveLocation,
     saveHistory,
     saveName,
+    getPersons,
+    addPerson,
   /*  deleteUser,
     updateUser*/
 }
