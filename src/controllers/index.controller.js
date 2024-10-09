@@ -145,7 +145,7 @@ const addPerson = async (req, res) => {
     const response = await pool.query(query, [name, lastName]);
     let now = new Date();
     console.log(name + " " + lastName + " Name OK " + now)
-    const data = { name: name, lastName: lastName }
+    const data = [{ id : 0, name: name, lastName: lastName }]
     const responseData = {
         success: true,
         data: data,
