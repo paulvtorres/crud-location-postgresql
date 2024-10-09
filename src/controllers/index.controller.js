@@ -139,11 +139,10 @@ const saveName = async (req, res) => {
 };
 
 const addPerson = async (req, res) => {
-    const phoneNum = req.body.phoneNum;
     const name = req.body.name;
     const lastName = req.body.lastName;
     const query = "INSERT INTO person (name,lastName) VALUES ($1,$2)"
-    const response = await pool.query(query, [phoneNum, name, lastName]);
+    const response = await pool.query(query, [name, lastName]);
     let now = new Date();
     console.log(phoneNum + " Name OK " + now)
     const data = { name: name, lastName: lastName }
