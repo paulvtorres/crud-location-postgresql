@@ -144,7 +144,7 @@ const addPerson = async (req, res) => {
     const query = "INSERT INTO person (name,lastName) VALUES ($1,$2)"
     const response = await pool.query(query, [name, lastName]);
     let now = new Date();
-    console.log(Name + " " + lastName + " Name OK " + now)
+    console.log(name + " " + lastName + " Name OK " + now)
     const data = { name: name, lastName: lastName }
     const responseData = {
         success: true,
